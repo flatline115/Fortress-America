@@ -1,0 +1,23 @@
+state={
+	id=743
+	name="STATE_743"
+	manpower = 12508
+	resources={
+		aluminium=8
+	}
+
+	state_category = city
+
+	history={
+		owner = ETY
+		buildings = {
+			infrastructure = 6
+			industrial_complex = 1
+		}
+		add_core_of = ETY
+	}
+
+	provinces={
+		478 11415 9496
+	}
+}

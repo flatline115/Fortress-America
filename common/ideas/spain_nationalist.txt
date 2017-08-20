@@ -1,0 +1,88 @@
+ideas = {
+
+	country = {
+		SPA_War_Preperation = {
+				allowed = {
+					original_tag = SPR
+					has_government = fascism
+				}
+
+				allowed_civil_war = {
+					always = no
+				}
+
+				modifier = {
+					training_time_factor = -0.5
+					research_time_factor = -0.4
+					consumer_goods_factor = -0.6
+					production_speed_industrial_complex_factor = 0.35
+					production_speed_arms_factory_factor = 0.35
+				}
+			} 
+
+		SPA_NationalSyndicateIdea = {
+			#picture
+			allowed = {
+				original_tag = SPR
+ 			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			modifier = {
+				production_speed_buildings_factor = 0.05
+				global_building_slots_factor = 0.15				
+			}
+		}
+
+		SPA_EconomicReformsIdea = {
+			#picture
+			allowed = {
+				original_tag = SPR
+				SPR = {has_completed_focus = SPR_ReformsComplete}	
+			}
+
+			allowed_civil_war = {always = yes}
+
+			modifier = {
+				consumer_goods_factor = -0.05
+			}
+		}
+
+		SPA_IndustryReward = {
+			#picture 
+			allowed = {
+				original_tag = SPR 
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			modifier = {
+				consumer_goods_factor = -0.15
+				production_speed_buildings_factor = 0.25
+			}
+		}
+
+		SPA_ResearchReward	 = {
+			#picture 
+			allowed = {
+				original_tag = SPR 
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			modifier = {
+				research_time_factor = -0.2
+			}
+		}
+
+		##needed##
+		SPA_recovering_from_civil_war = {}
+
+	}
+}

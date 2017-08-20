@@ -1,0 +1,31 @@
+﻿#portugal
+
+#namespaces
+add_namespace = inRuins
+
+#events
+country_event = {
+	id = inRuins.1
+	title = inRuins.1.t
+	desc = inRuins.1.d
+	picture = GFX_event_test
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	immediate = {
+		if = {
+			limit = {
+				tag = POR			
+			}
+			add_ideas = POR_Mass_Riots
+		}
+
+	}
+
+	option = {
+		name = inRuins.1.a
+	}
+
+}

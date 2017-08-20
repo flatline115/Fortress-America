@@ -1,0 +1,29 @@
+bookmarks = {
+	bookmark = {
+		name = "Cold_War_Name"
+		desc = "Cold_War_Desc"
+		date = 1948.1.1.1
+		picture = "GFX_select_date_1936"
+		default_country = "GER"
+		default = yes
+	 "USA"={
+			history = ""
+			ideology = democratic
+			ideas = {
+				
+			}
+			focuses = {
+				
+			}
+		}
+	"SPR"={
+		history = ""
+		ideology = fascism
+		ideas = {
+
+		}
+		focuses = {
+			
+		}
+	}
+}

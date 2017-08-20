@@ -1,0 +1,430 @@
+focus_tree = {
+	id = spain_focus
+	default = no
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = SPR
+		}
+	}
+	#our place in the world
+	focus = {
+		id = SPR_OurPlaceInTheWorld
+		icon = GFX_goal_molotov_ribbentrop_pact
+		x = 13
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {add_political_power = 100}
+	}
+
+	#New European order
+	focus = {
+		id = SPR_NewEuropeanOrder
+		icon = GFX_goal_support_fascism
+		x = 10
+		y = 1
+		cost = 20
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {focus = SPR_OurPlaceInTheWorld}
+		mutually_exclusive = {focus = SPR_Pick_A_Side}
+			
+		completion_reward = {
+			create_faction = "New European Order"
+		}
+	}
+
+	#Italian Election Meddeling 
+	focus = {
+		id = SPR_ItalyElectionRig
+		icon = GFX_focus_generic_italy_first
+		x = 12
+		y = 2
+		cost = 15
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {focus = SPR_NewEuropeanOrder}
+		completion_reward = {
+
+		}
+	}
+	
+	#fund the grey wolves
+	focus = {
+		id = SPR_FundGreyWolves
+		icon = GFX_goal_generic_secret_weapon
+		x = 12
+		y = 3
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {focus = SPR_ItalyElectionRig}
+		completion_reward = {
+
+		}
+	}
+
+	#Gilbrtar Question
+	focus = {
+		id = SPR_GilbrtarQuestion
+		icon = GFX_focus_RAJ_clamp_down_on_corruption
+		x = 7
+		y = 2
+		cost = 30
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {focus = SPR_NewEuropeanOrder}
+		completion_reward = {
+
+		}
+	}
+
+	#portugal_death_begins
+	focus = {
+		id = SPR_Portugal_In_Ruins
+		icon = GFX_focus_generic_strike_at_democracy3
+		x = 10
+		y = 2
+		cost = 15
+		ai_will_do = {
+			factor = 1
+		}
+
+		prerequisite = {focus = SPR_NewEuropeanOrder}
+		completion_reward = {
+			POR = {
+				country_event = {
+					id = inRuins.1
+					days = 1
+				}
+			}
+		}
+	}
+
+	#prepare intervention
+	focus = {
+		id = SPR_Prepare_Intervention
+		icon = GFX_focus_generic_strike_at_democracy1
+		prerequisite = {focus = SPR_Portugal_In_Ruins}
+		x = 10
+		y = 3
+		cost = 15
+		ai_will_do = {
+			factor = 1
+		}
+
+		completion_reward = {
+			SPR = {
+				army_experience	= 75
+				add_manpower = 1000000
+				add_ideas = SPA_War_Preperation
+				country_event = {
+					id = fortressSpain.1
+					days = 200
+				}
+			}
+		}
+	}
+
+	#portugese intervention
+	focus = {
+		id = SPR_Portugese_Intervention
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = {focus = SPR_Prepare_Intervention }
+		x = 10
+		y = 4
+		cost = 28.6 #change to the equivalent of 200.
+		ai_will_do = {
+			factor = 1
+		}
+
+		completion_reward = {
+			SPR = {
+				create_wargoal = {type = annex_everything target = POR}
+			}
+			news_event = fortressSpain.3
+		}
+	}
+
+	#Iberian State
+	focus = {
+		id = SPR_Form_Iberia
+		icon = GFX_goal_generic_military_deal
+		x = 10
+		y = 5
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+		
+		prerequisite = {
+			focus = SPR_Portugese_Intervention
+		}
+		prerequisite = {focus = SPR_GilbrtarQuestion}
+		
+		available = {
+			has_government = fascism
+			SPR = {owns_state = 180}
+			SPR = {owns_state = 181}
+			SPR = {owns_state = 112}
+			SPR = {owns_state = 179}
+		}
+
+		completion_reward = {
+			SPR = {
+				add_state_core = 180
+				add_state_core = 112
+				add_state_core = 181
+				add_state_core = 179
+				add_state_core = 118
+
+				add_popularity = {ideology = fascism popularity = -1}
+				add_popularity = {ideology = ibn popularity = 0.75}
+				set_politics = {ruling_party = ibn elections_allowed = no}
+				set_cosmetic_tag = SPRIB
+			}
+		}
+
+	}
+
+	
+
+	#National Syndicate
+		focus = {
+			id = SPR_NationalSyndicate
+			icon = GFX_goal_generic_production2
+			x = 3
+			y = 0
+			cost = 10
+			completion_reward = {
+				add_ideas = SPA_NationalSyndicateIdea
+				41 = {add_building_construction = {
+						type = infrastructure
+						level = 10	
+					}
+				}
+			}
+		}	
+
+	#militaristic economy
+		focus = {
+			id = SPR_Militaristic
+			icon = GFX_goal_generic_construct_mil_factory
+			x = 0
+			y = 1
+			cost = 35
+			prerequisite = {focus = SPR_NationalSyndicate}
+			mutually_exclusive = {focus = SPR_Corporatist}
+			available = {
+				SPR = {has_full_control_of_state = 41}
+			}
+			completion_reward = {
+			41 = {
+					add_extra_state_shared_building_slots = 10
+					add_building_construction = {
+						type = arms_factory
+						level = 10
+						instant_build = yes
+					}
+				}
+			}
+		}
+	#andaulsian
+		focus = {
+			id = SPR_Andalusia
+			icon = GFX_goal_generic_production
+			x = 0
+			y = 2
+			cost = 40
+			prerequisite = {focus = SPR_Militaristic}
+			available = {
+				SPR = {has_full_control_of_state = 169}
+			}
+			completion_reward = {
+				169	 = {
+					add_extra_state_shared_building_slots = 25
+					add_building_construction = {
+						type = industrial_complex
+						level = 15
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 10
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 10
+					}
+				}
+			}
+		}
+	#Angolan Oil 
+		focus = {
+			id = SPR_AngolanOil
+			icon = GFX_goal_generic_oil_refinery
+			x = 0
+			y = 3
+			prerequisite = {focus = SPR_Andalusia}
+			prerequisite = {focus = SPR_Form_Iberia}
+			available = {
+				SPR = {has_full_control_of_state = 540}
+			}
+			completion_reward = {
+				add_resource = {type = oil amount = 20 state = 540}
+			}
+		}
+	
+	#Corporatist
+		focus = {
+			id = SPR_Corporatist
+			icon = GFX_goal_generic_production
+			x = 5
+			y = 1 
+			prerequisite = {focus = SPR_NationalSyndicate}
+			mutually_exclusive = {focus = SPR_Militaristic}
+		}
+
+	#Pan Iberian Highway
+		focus = {
+			id = SPR_PanIberian
+			icon = GFX_goal_generic_construction2
+			prerequisite = {focus = SPR_NationalSyndicate}
+			prerequisite = {focus = SPR_Form_Iberia}
+			x = 3
+			y = 2
+			cost = 45
+			completion_reward = {
+				170 = {add_building_construction = {type = infrastructure level = 10}}
+				181 = {add_building_construction = {type = infrastructure level = 10}}
+				112 = {add_building_construction = {type = infrastructure level = 10}}
+				166 = {add_building_construction = {type = infrastructure level = 10}}
+				165 = {add_building_construction = {type = infrastructure level = 10}}
+			}
+		}
+
+	#subsidize consumer 
+		focus = {
+			id = SPR_SubsidizeConsumer
+			icon = GFX_goal_generic_consumer_goods
+			prerequisite = {focus = SPR_PanIberian}
+			x = 3
+			y = 3
+			cost = 20
+			completion_reward = {
+				176 = {add_extra_state_shared_building_slots = 5 add_building_construction = {type = industrial_complex level = 5}}
+			}
+		}
+
+	#barcelona port
+		focus = {
+			id = SPR_Barcelona
+			icon = GFX_goal_generic_construct_naval_dockyard
+			x = 5
+			y = 2
+			cost = 20
+			prerequisite = {focus = SPR_NationalSyndicate}
+			completion_reward = {
+				165 = {add_extra_state_shared_building_slots = 10 add_building_construction = {type = dockyard level = 10}}
+			}
+		}
+	#complete reforms
+		focus = {
+			id = SPR_ReformsComplete
+			icon = GFX_focus_generic_self_management
+			x = 3
+			y = 5
+			cost = 25
+			prerequisite = {focus = SPR_AngolanOil}
+			prerequisite = {focus = SPR_SubsidizeConsumer}
+			prerequisite = {focus = SPR_Barcelona}
+			completion_reward = {
+				add_ideas = SPA_EconomicReformsIdea
+			}
+		}
+	#research reward 
+		focus = {
+			id = SPR_ResearchReward 
+			icon = GFX_goal_generic_scientific_exchange
+			x = 1
+			y = 6
+			cost = 0
+			prerequisite = {focus = SPR_ReformsComplete}
+			mutually_exclusive = {focus = SPR_IndustryReward}
+			completion_reward = {add_research_slot = 2 add_ideas = SPA_ResearchReward}
+		}
+
+	#research reward 
+		focus = {
+			id = SPR_IndustryReward 
+			icon = GFX_goal_generic_construct_civ_factory
+			x = 5
+			y = 6
+			cost = 0
+			prerequisite = {focus = SPR_ReformsComplete}
+			mutually_exclusive = {focus = SPR_ResearchReward}
+			completion_reward = {add_ideas = SPA_IndustryReward}
+		}
+
+	#pick a side 
+	focus = {
+		id = SPR_Pick_A_Side
+		icon = GFX_goal_generic_dangerous_deal
+		x = 15
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {focus = SPR_OurPlaceInTheWorld}
+		mutually_exclusive = {focus = SPR_NationalSyndicate}
+	}
+
+
+	#communism branches 
+		focus = {
+			id = SPR_ProCommunism
+			icon = GFX_goal_support_communism
+			x = 20
+			y = 2
+			cost = 10
+			prerequisite = {focus = SPR_Pick_A_Side}
+			completion_reward = {
+
+			}
+		}
+
+	#burgos 
+		focus = {
+			id = SPR_Burgos
+			icon = GFX_focus_wonderweapons
+			x = 18 
+			y = 3
+			cost = 10 
+			prerequisite = {focus = SPR_ProCommunism}
+			completion_reward = {
+
+			}
+		}
+
+	#sovacces
+		focus = {
+			id = SPR_SovietBases
+			icon = GFX_goal_generic_build_tank
+			x = 18
+			y = 4
+			prerequisite = {focus = SPR_Burgos}
+			completion_reward = {
+
+			}
+		}
+
+}

@@ -1,0 +1,23 @@
+﻿#spain
+
+#namespaces
+add_namespace = fortressSpain
+
+country_event = {
+	id = fortressSpain.1
+	title = fortressSpain.1.t
+	desc = fortressSpain.1.d
+	picture = GFX_event_test
+
+	is_triggered_only = yes
+	hidden = no
+	fire_only_once = yes
+
+	immediate = {
+		remove_ideas = SPA_War_Preperation
+	}
+
+	option = {
+		name = fortressSpain.1.a
+	}
+}
